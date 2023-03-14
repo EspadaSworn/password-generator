@@ -12,7 +12,7 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-var specialArr = ["@", "%", "+", "\\", "/", "'", "!", "#", "$",  "^", "?", ":", ",", ")",  "(",  "}",  "{",  "]", "[", "~", "-", "_", ".",];
+var symbolArr = ["@", "%", "+", "\\", "/", "'", "!", "#", "$",  "^", "?", ":", ",", ")",  "(",  "}",  "{",  "]", "[", "~", "-", "_", ".",];
 
 var numberArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
@@ -75,6 +75,32 @@ var upperArr = [
 ];
 
 var lengthOfPassword = window.prompt("Enter Password Length: ")
+//var symbolOfPassword = window.Boolean ("Do you want symbols?")
+
+
+if (lengthOfPassword<8|| lengthOfPassword> 128) {
+  window.alert("Please enter a password length value of between 8 and 128");
+}
+
+//notes below
+
+//var randomNum = Math.random();
+//console.log("randomNum", randomNum);
+
+//var  increasedUpperBound = randomNum * 10 // the 10 is the length of the array
+//console.log("increasedUpperBound", increasedUpperBound);
+
+//var randomIndex = Math.floor();//rounds down
+//console.log("randomIndex", randomIndex); 52:30 api class 1
+
+var result = [];
+
+for (var i =0; i < lengthOfPassword; i++) {
+  console.log(result);
+  var randomNum = numberArr[Math.floor(Math.random()*numberArr.length)];// summarized all of the above
+  result.push(randomNum);
+  console.log(result); 
+}
 
 // Write password to the #password input
 function writePassword() {
