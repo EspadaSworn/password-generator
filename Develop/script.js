@@ -76,10 +76,38 @@ var upperArr = [
 
 var lengthOfPassword = window.prompt("Enter Password Length: ")
 //var symbolOfPassword = window.Boolean ("Do you want symbols?")
+var numberChoice= window.prompt("Do you want numbers: 'Yes' or 'No'")
+var symbolChoice= window.prompt("Do you want symbols: 'Yes' or 'No'")
+var lowerChoice= window.prompt("Do you want lower case letters: 'Yes' or 'No'")
+var upperChoice= window.prompt("Do you want upper case letters: 'Yes' or 'No'")
 
 
 if (lengthOfPassword<8|| lengthOfPassword> 128) {
   window.alert("Please enter a password length value of between 8 and 128");
+}
+
+if (numberChoice=="Yes") {
+  window.alert("Confirmed:Using numbers.")
+} else {
+  window.alert("Confirmed:No numbers")
+}
+
+if (symbolChoice=="Yes") {
+  window.alert("Confirmed:Using symbols.")
+} else {
+  window.alert("Confirmed:No symbols")
+}
+
+if (lowerChoice=="Yes") {
+  window.alert("Confirmed:Using lower letters.")
+} else {
+  window.alert("Confirmed:No lower letters")
+}
+
+if (upperChoice=="Yes") {
+  window.alert("Confirmed:Using upper letters.")
+} else {
+  window.alert("Confirmed:No upper letters")
 }
 
 //notes below
@@ -96,7 +124,7 @@ if (lengthOfPassword<8|| lengthOfPassword> 128) {
 var result = [];
 
 for (var i =0; i < lengthOfPassword; i++) {
-  console.log(result);
+  var randomIndex=Math.floor(Math.random()*numberArr.length);
   var randomNum = numberArr[Math.floor(Math.random()*numberArr.length)];// summarized all of the above
   result.push(randomNum);
   console.log(result); 
@@ -104,12 +132,16 @@ for (var i =0; i < lengthOfPassword; i++) {
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  password.textContent = result;
+  //var password = generatePassword();
+  //var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  //passwordText.value = password;
 
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
