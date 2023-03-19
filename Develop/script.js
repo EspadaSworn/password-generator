@@ -12,7 +12,7 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-var symbolArr = ["@", "%", "+", "\\", "/", "'", "!", "#", "$",  "^", "?", ":", ",", ")",  "(",  "}",  "{",  "]", "[", "~", "-", "_", ".",];
+var symbolArr = ["@", "%", "+", "\\", "/", "'", "!", "#", "$",  "^", "?", ":", ")",  "(",  "}", ",",  "{",  "]", "[", "~", "-", "_", ".",];
 
 var numberArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
@@ -74,16 +74,26 @@ var upperArr = [
   "Z",
 ];
 
-var lengthOfPassword = window.prompt("Enter Password Length: ")
+var generatePassword = (length,hasNumbers, hasSymbols, hasLower, hasUpper)=>{
+  var userArr = [
+    (hasNumbers ? numberArr : []),
+    (hasSymbols ? symbolArr : []),
+    (hasLower ? lowerArr : []),
+    (hasUpper ? symbolArr : []),    
+  ]
+} // check? added last
+
+var lengthOfPassword = parseInt(window.prompt("Enter Password Length: "));
 //var symbolOfPassword = window.Boolean ("Do you want symbols?")
-var numberChoice= window.prompt("Do you want numbers: 'Yes' or 'No'")
-var symbolChoice= window.prompt("Do you want symbols: 'Yes' or 'No'")
-var lowerChoice= window.prompt("Do you want lower case letters: 'Yes' or 'No'")
-var upperChoice= window.prompt("Do you want upper case letters: 'Yes' or 'No'")
+var numberChoice= window.prompt("Do you want numbers: 'Yes' or 'No'");
+var symbolChoice= window.prompt("Do you want symbols: 'Yes' or 'No'");
+var lowerChoice= window.prompt("Do you want lower case letters: 'Yes' or 'No'");
+var upperChoice= window.prompt("Do you want upper case letters: 'Yes' or 'No'");
 
 
-if (lengthOfPassword<8|| lengthOfPassword> 128) {
+while (lengthOfPassword<8|| lengthOfPassword> 128) {
   window.alert("Please enter a password length value of between 8 and 128");
+  lengthOfPassword=parseInt(window.prompt("Enter Password Length: ")); //causes program to cycle
 }
 
 if (numberChoice=="Yes") {
@@ -112,32 +122,33 @@ if (upperChoice=="Yes") {
 
 //notes below
 
-//var randomNum = Math.random();
-//console.log("randomNum", randomNum);
-
-//var  increasedUpperBound = randomNum * 10 // the 10 is the length of the array
-//console.log("increasedUpperBound", increasedUpperBound);
-
-//var randomIndex = Math.floor();//rounds down
-//console.log("randomIndex", randomIndex); 52:30 api class 1
-
 var result = [];
 
 for (var i =0; i < lengthOfPassword; i++) {
-  var randomIndex=Math.floor(Math.random()*numberArr.length);
-  var randomNum = numberArr[Math.floor(Math.random()*numberArr.length)];// summarized all of the above
-  result.push(randomNum);
+  //var randomIndex=Math.floor(Math.random()*numberArr.length);// this or the following, both arent needed
+  //var randomNum = numberArr[Math.floor(Math.random()*numberArr.length)];// summarized all of the above
+  
+  //if (availableCharacters.length===0) return "";
+
+
+
+  if (numberChoice=="Yes" && symbolChoice=="Yes" && lowerChoice=="Yes" && upperChoice=="Yes"){
+    var randomIndex=userArr[Math.floor(Math.random()*(userArr.length))];
+  } else {
+    var randomIndex=symbolArr[Math.floor(Math.random()*symbolArr.length)];// removed "," from symbols to avoid confusion
+  }
+  result.push(randomIndex);
   console.log(result); 
 }
 
+console.log(result.join("")); // join combines the password so theres no , between each unit
 // Write password to the #password input
 function writePassword() {
-  password.textContent = result;
+  password.textContent = (result.join(""));
   //var password = generatePassword();
   //var passwordText = document.querySelector("#password");
 
   //passwordText.value = password;
-
 }
 
 // Add event listener to generate button
